@@ -1,0 +1,25 @@
+{
+  "name": "mpesa-node-library",
+  "version": "1.0.0",
+  "description": "M-Pesa REST Node Library",
+  "main": "m-pesa.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "request-promise": "^4.2.2",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d lib"
+  },
+  "keywords": [
+    "REST"
+  ],
+  "author": "Dennis Gatere",
+  "license": "ISC"
+}
