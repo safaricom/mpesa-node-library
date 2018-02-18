@@ -12,9 +12,10 @@ On the security function set your security credential value as specified within 
     
 `let bufferToEncrypt = new Buffer("ENTER SECURITY CREDENTIAL TEXT HERE");`
 
-**_Note:_**  + If using on production comment sandbox URL and uncomment production URL, set to sandbox initially.<br>
-             + ES5 compatible version of library generated with babel located in lib folder of project.
-             + Click links for more information on possible values and use of each API
+**_Additional Notes_**  
+* If using on production comment sandbox URL and uncomment production URL, set to sandbox initially.<br>
+* ES5 compatible version of library generated with babel located in lib folder of project.<br>
+* Click links for more information on possible values and use of each API
 
 **Usage**
 
