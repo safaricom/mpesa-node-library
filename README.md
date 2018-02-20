@@ -3,6 +3,8 @@
 
 This package is intended to assist Node.js developers to use the M-Pesa API.
 
+Install the node modules by running `npm install` on the project folder in command prompt to install dependencies. 
+
 Before using the transaction API set the consumer key and consumer secret from <br>My Apps > Select App > copy Consumer Key and Consumer Secret and paste within quotes:
 
     const consumer_key = 'INSERT CONSUMER KEY HERE';
