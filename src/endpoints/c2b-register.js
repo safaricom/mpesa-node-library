@@ -1,7 +1,7 @@
 const rp = require('request-promise')
 const oAuth = require('./oauth')
 
-module.exports = async(shortCode, responseType, confirmationUrl, validationUrl) => {
+module.exports = async (shortCode, responseType, confirmationUrl, validationUrl) => {
   const credentials = await oAuth()
   let options = {
     method: 'POST',

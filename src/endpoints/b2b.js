@@ -1,8 +1,8 @@
 const rp = require('request-promise')
 const oAuth = require('./oauth')
 
-module.exports = async(initiator, commandId, senderId, receiverId, amount, partyA, partyB, accountRef, remarks, queueUrl, resultUrl, occasion) => {
-  const credentials = await oAuth();
+module.exports = async (initiator, commandId, senderId, receiverId, amount, partyA, partyB, accountRef, remarks, queueUrl, resultUrl, occasion) => {
+  const credentials = await oAuth()
   let options = {
     method: 'POST',
     // uri: 'https://api.safaricom.co.ke/mpesa/b2b/v1/paymentrequest',
@@ -30,4 +30,4 @@ module.exports = async(initiator, commandId, senderId, receiverId, amount, party
   }
 
   return rp(options)
-};
+}
