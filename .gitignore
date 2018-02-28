@@ -54,3 +54,5 @@ typings/
 # yarn error-log
 yarn-error.log
 
+# idea
+.idea/
