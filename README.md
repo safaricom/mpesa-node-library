@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/geofmureithi/mpesa-node-library.svg?branch=master)](https://travis-ci.org/geofmureithi/mpesa-node-library)
 
 ## Prerequisites
-1. Node v6+, 8+ recommended
+1. Node v6+, 8+ recommended.
 2. Yarn* (optional) You can still use npm
 3. ES6 knowledge
 
