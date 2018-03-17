@@ -1,5 +1,8 @@
-# mpesa-node-library
+# Node.js M-Pesa API 
 **M-Pesa Library for Node.js using REST API**
+
+<a href="https://standardjs.com" style="float: right; padding: 0 0 20px 20px;"><img src="https://cdn.rawgit.com/feross/standard/master/sticker.svg" alt="JavaScript Standard Style" width="100" align="right"></a>
+[![Build Status](https://travis-ci.org/geofmureithi/mpesa-node-library.svg?branch=master)](https://travis-ci.org/geofmureithi/mpesa-node-library)
 
 This package is intended to assist Node.js developers to use the M-Pesa API.
 
