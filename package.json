@@ -15,7 +15,7 @@
     "supertest": "^3.0.0"
   },
   "scripts": {
-    "test" : "npm run test-unit && npm run test-intergration",
+    "test" : "npm run test-unit && npm run test-integration",
     "test-unit": "mocha tests/unit/*.test.js",
     "test-integration": "mocha tests/integrations/*.js"
   },
