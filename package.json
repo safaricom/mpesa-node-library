@@ -1,30 +1,38 @@
 {
   "name": "mpesa-node-library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "M-Pesa REST Node Library",
-  "main": "m-pesa.js",
-  "directories": {
-    "lib": "lib"
-  },
+  "main": "src/m-pesa.js",
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "axios": "^0.18.0"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
+    "express": "^4.16.3",
     "mocha": "^5.0.1",
+    "ngrok": "^3.0.0",
     "standard": "^11.0.0",
     "supertest": "^3.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d lib"
+    "test-unit": "mocha tests/unit/*.test.js",
+    "test-integration": "mocha tests/integrations/*.js"
   },
   "keywords": [
     "REST"
   ],
-  "author": "Dennis Gatere",
-  "license": "ISC"
+  "standard": {
+    "globals": [
+      "describe",
+      "context",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "expect"
+    ]
+  },
+  "author": "Geoffrey Mureithi",
+  "license": "MIT"
 }

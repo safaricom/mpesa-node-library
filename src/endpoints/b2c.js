@@ -1,29 +1,18 @@
-const rp = require('request-promise')
-const oAuth = require('./oauth')
-
+const security = require('.././helpers/security')
+const request = require('.././helpers/request')
 module.exports = async (initiatorName, commandId, amount, partyA, partyB, remarks, queueUrl, resultUrl, occasion) => {
-  const credentials = await oAuth();
-  let options = {
-    method: 'POST',
-    // uri: 'https://api.safaricom.co.ke/mpesa/b2c/v1/paymentrequest',
-    uri: 'https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest',
-    headers: {
-      'Authorization': 'Bearer ' + credentials['access_token'],
-      'Content-Type': 'application/json'
-    },
-    body: {
-      'InitiatorName': initiatorName,
-      'SecurityCredential': security_credential,
-      'CommandID': commandId,
-      'Amount': amount,
-      'PartyA': partyA,
-      'PartyB': partyB,
-      'Remarks': remarks,
-      'QueueTimeOutURL': queueUrl,
-      'ResultURL': resultUrl,
-      'Occasion': occasion
-    },
-    json: true
-  }
-  return rp(options)
+  const securityCredential = security()
+  const req = await request()
+  return req.post('/mpesa/b2c/v1/paymentrequest', {
+    'InitiatorName': initiatorName,
+    'SecurityCredential': securityCredential,
+    'CommandID': commandId,
+    'Amount': amount,
+    'PartyA': partyA,
+    'PartyB': partyB,
+    'Remarks': remarks,
+    'QueueTimeOutURL': queueUrl,
+    'ResultURL': resultUrl,
+    'Occasion': occasion
+  })
 }
