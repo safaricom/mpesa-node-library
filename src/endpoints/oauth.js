@@ -1,13 +1,15 @@
-const rp = require('request-promise')
-
-module.exports = (consumerKey, consumerSecret) => {
-  const auth = 'Basic ' + Buffer.from(consumerKey + ':' + consumerSecret).toString('base64')
-  const options = {
-    uri: 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials',
+const axios = require('axios')
+module.exports = () => {
+  const {
+    MPESA_BASE_URL,
+    MPESA_CONSUMER_KEY,
+    MPESA_CONSUMER_SECRET
+  } = process.env
+  const auth = Buffer.from(MPESA_CONSUMER_KEY + ':' + MPESA_CONSUMER_SECRET).toString('base64')
+  return axios.get(MPESA_BASE_URL + '/oauth/v1/generate?grant_type=client_credentials', {
     headers: {
-      'Authorization': auth
-    },
-    json: true
-  }
-  return rp(options)
+      'Authorization': 'Basic ' + auth,
+      'content-type': 'application/json'
+    }
+  })
 }
