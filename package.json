@@ -1,7 +1,7 @@
 {
-  "name": "mpesa-node-library",
-  "version": "1.0.1",
-  "description": "M-Pesa REST Node Library",
+  "name": "mpesa-node",
+  "version": "0.0.1",
+  "description": "Node M-Pesa Library",
   "main": "src/m-pesa.js",
   "dependencies": {
     "axios": "^0.18.0"
@@ -22,7 +22,7 @@
     "test-integration": "mocha --exit tests/integrations/*.js"
   },
   "keywords": [
-    "REST"
+    "mpesa", "mpesa-node", "mpesa-api"
   ],
   "standard": {
     "globals": [
