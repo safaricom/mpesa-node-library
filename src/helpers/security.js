@@ -1,23 +1,16 @@
 const fs = require('fs')
+const path = require('path')
 const crypto = require('crypto')
-const constants = require('constants')
 
 module.exports = () => {
-  // sandbox value for security credential = Security Credential (Shortcode 1)
-  // production value for security credential = api initiator password
-  let bufferToEncrypt = Buffer.from('ENTER SECURITY CREDENTIAL TEXT HERE')
-  // read the sandbox/production certificate data
-  // PATH - e.g "../keys/sandbox-cert.cer"
-  let data = fs.readFileSync('PATH TO CERTIFICATE FILE')
-  // convert data to string
-  let privateKey = String(data)
-  // encrypt the credential using the privatekey
-  let encrypted = crypto.publicEncrypt({
+  const { MPESA_CERT_FILE, MPESA_SHORTCODE_SECURITY_CRED } = process.env
+  const bufferToEncrypt = Buffer.from(MPESA_SHORTCODE_SECURITY_CRED)
+  const data = fs.readFileSync(path.resolve(MPESA_CERT_FILE))
+  const privateKey = String(data)
+  const encrypted = crypto.publicEncrypt({
     key: privateKey,
-    padding: constants.RSA_PKCS1_PADDING
+    padding: crypto.constants.RSA_PKCS1_PADDING
   }, bufferToEncrypt)
-  // convert encrypted value to string and encode to base64
-  let securityCredential = encrypted.toString('base64')
-  // return value to invoking method
+  const securityCredential = encrypted.toString('base64')
   return securityCredential
 }
