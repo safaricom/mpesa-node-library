@@ -115,7 +115,7 @@ This initiates a C2B confirmation and validation registration for a company's UR
  * Example:
  */
 const { c2bRegister } = mpesaApi
-c2bRegister('600133', 'Completed', 'http://randomurl.com', 'http://randomurl2.com')
+await c2bRegister('600133', 'Completed', 'http://randomurl.com', 'http://randomurl2.com')
 
 ````
 
@@ -129,7 +129,7 @@ This initiates a C2B transaction between an end-user and a company (paybill or t
  * Example:
  */
 const { c2bSimulate } = mpesaApi
-c2bSimulate('600133', 'CustomerPayBillOnline', '300', '254708374149', '0000')
+await c2bSimulate('600133', 'CustomerPayBillOnline', '300', '254708374149', '0000')
 
 ````
 5. [M-Pesa Express Request - Lipa Na M-Pesa Online Payment API](https://developer.safaricom.co.ke/lipa-na-m-pesa-online/apis/post/stkpush/v1/processrequest)
@@ -142,7 +142,7 @@ This initiates a Lipa Na M-Pesa Online Payment transaction using STK Push.
  * Example:
  */
 const { lipaNaMpesaOnline } = mpesaApi
-lipaNaMpesaOnline('174379', '20180215123520', 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919', 'CustomerPayBillOnline', '1', '254708374149', '174379', '254708374149', 'http://randomurl.com', 'test', 'test')
+await lipaNaMpesaOnline('174379', '20180215123520', 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919', 'CustomerPayBillOnline', '1', '254708374149', '174379', '254708374149', 'http://randomurl.com', 'test', 'test')
 
 ````
 6. [M-Pesa Express Query Request - Lipa Na M-Pesa Query Request API](https://developer.safaricom.co.ke/lipa-na-m-pesa-online/apis/post/stkpushquery/v1/query)
@@ -155,7 +155,7 @@ This API checks the status of a Lipa Na M-Pesa Online Payment transaction
  * Example:
  */
 const { lipaNaMpesaQuery} = mpesaApi
-lipaNaMpesaQuery(174379, '20180215123520', 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919', 'ws_co_123456789')
+await lipaNaMpesaQuery(174379, '20180215123520', 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919', 'ws_co_123456789')
 ````
 7. [Reversal Request](https://developer.safaricom.co.ke/reversal/apis/post/request)
 
@@ -166,7 +166,7 @@ This initiates an M-Pesa transaction reversal on B2B, B2C or C2B API
  * Example:
  */
 const { reversal } = mpesaApi
-reversal('testapi', 'TransactionReversal', 'LKXXXX1234', '100', '600133', '11', 'http://randomurl.com', 'http://randomurl2.com', 'test', 'test')
+await reversal('testapi', 'TransactionReversal', 'LKXXXX1234', '100', '600133', '11', 'http://randomurl.com', 'http://randomurl2.com', 'test', 'test')
 ````
 8. [Transaction Status Request](https://developer.safaricom.co.ke/transaction-status/apis/post/query)
 
@@ -178,7 +178,7 @@ This API is used to check the status of B2B, B2C and C2B transactions
  * Example:
  */
 const { transactionStatus } = mpesaApi
-transactionStatus('testapi', 'TransactionStatusQuery', 'LKXXXX1234', '600133', '4', 'http://randomurl.com', 'http://randomurl2.com', 'test', '4455-6589979')
+await transactionStatus('testapi', 'TransactionStatusQuery', 'LKXXXX1234', '600133', '4', 'http://randomurl.com', 'http://randomurl2.com', 'test', '4455-6589979')
 ````
 9. [Account Balance Request](https://developer.safaricom.co.ke/account-balance/apis/post/query)
 
@@ -190,7 +190,7 @@ This initiates a request for the account balance of a shortcode
  * Example:
  */
 const { accountBalance } = mpesaApi
-accountBalance('testapi', 'AccountBalance', '600133', '4', 'test', 'http://randomurl.com', 'http://randomurl2.com')
+await accountBalance('testapi', 'AccountBalance', '600133', '4', 'test', 'http://randomurl.com', 'http://randomurl2.com')
 ````
 ## Testing
 Testing needs you to clone this repo.
