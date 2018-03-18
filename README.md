@@ -25,7 +25,7 @@ You need the following befor getting to use this library:
 ## Getting Started
 This library is extremely modular, meaning you can create more than one Mpesa instance
 ````js
-const Mpesa = require('m-pesa')
+const Mpesa = require('mpesa-node')
 const mpesaApi = new Mpesa({ consumerKey: '<your consumer key>', consumerSecret: '<your consumer secret>' })
 // another instance
 // const instance = new Mpesa({ consumerKey: 'test', consumerSecret: 'test', environment: 'production' })
