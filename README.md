@@ -198,11 +198,27 @@ await mpesaApi.accountBalance(shortCode, 4, URL + '/accountbalance/timeout', URL
 ````
 ## Testing
 Testing needs you to clone this repo.
+
 The command below runs both integration and unit test.
-Integration tests launch a ngrok instance and await callbacks (you will need an active internet connection for this)
+
+Integration tests launch a ngrok instance and await callbacks (you will need an active internet connection for this).
+
 To run each separately, check `package.json` for the commands.
 ````
 npm test
+````
+## Going Live/Production
+
+You will need to first click on "Going Live" on [Daraja](https://developer.safaricom.co.ke/user/me/apps)
+
+The only thing you need to tweek in this Libs config is `environment`:
+````js
+new Mpesa({
+    consumerKey: '<your consumer key>',
+    consumerSecret: '<your consumer secret>',
+    environment: 'production', //<------
+    .....
+    })
 ````
 
 ## Pending Stuff
@@ -221,3 +237,13 @@ npm test
 2. Commit your changes: `git commit -m 'Add some feature'`
 3. Push to the branch: `git push origin my-new-feature`
 4. Submit a pull request :D
+
+## Credits
+
+Made with :beer: by [Geoffrey Mureithi](http://mureithi.me)
+
+Any Opinions expressed in this lib/repo are mine and do not reflect any way those of Node.Js or Safaricom
+
+## License
+
+MIT
