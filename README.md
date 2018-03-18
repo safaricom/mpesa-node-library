@@ -240,7 +240,7 @@ new Mpesa({
 
 ## Credits
 
-Made with :beer: by [Geoffrey Mureithi](http://mureithi.me)
+Made with :beer: by [Geoffrey Mureithi](https://mureithi.me)
 
 Any Opinions expressed in this lib/repo are mine and do not reflect any way those of Node.Js or Safaricom
 
