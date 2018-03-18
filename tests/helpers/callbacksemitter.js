@@ -6,4 +6,4 @@ function CallbacksEmitter () {
 
 util.inherits(CallbacksEmitter, events.EventEmitter)
 
-module.exports = new CallbacksEmitter
+module.exports = new CallbacksEmitter()

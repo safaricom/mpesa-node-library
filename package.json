@@ -2,19 +2,21 @@
   "name": "mpesa-node",
   "version": "0.0.2",
   "description": "Node M-Pesa Library",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/geofmureithi/mpesa-node-library"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geofmureithi/mpesa-node-library"
   },
   "main": "src/m-pesa.js",
   "dependencies": {
     "axios": "^0.18.0"
   },
   "devDependencies": {
+    "body-parser": "^1.18.2",
     "dotenv": "^5.0.1",
     "expect.js": "^0.3.1",
     "express": "^4.16.3",
     "got": "^8.3.0",
+    "jsdoc": "^3.5.5",
     "mocha": "^5.0.1",
     "ngrok": "^3.0.0",
     "standard": "^11.0.0",
@@ -26,7 +28,9 @@
     "test-integration": "mocha --exit tests/integrations/*.js"
   },
   "keywords": [
-    "mpesa", "mpesa-node", "mpesa-api"
+    "mpesa",
+    "mpesa-node",
+    "mpesa-api"
   ],
   "standard": {
     "globals": [

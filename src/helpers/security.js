@@ -2,10 +2,9 @@ const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')
 
-module.exports = () => {
-  const { MPESA_CERT_FILE, MPESA_SHORTCODE_SECURITY_CRED } = process.env
-  const bufferToEncrypt = Buffer.from(MPESA_SHORTCODE_SECURITY_CRED)
-  const data = fs.readFileSync(path.resolve(MPESA_CERT_FILE))
+module.exports = (certPath, shortCodeSecurityCredential) => {
+  const bufferToEncrypt = Buffer.from(shortCodeSecurityCredential)
+  const data = fs.readFileSync(path.resolve(certPath))
   const privateKey = String(data)
   const encrypted = crypto.publicEncrypt({
     key: privateKey,
