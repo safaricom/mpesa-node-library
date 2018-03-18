@@ -20,6 +20,7 @@ describe('B2C Callbacks', function () {
   })
   it('gets an b2c success callback from Daraja', function (done) {
     this.timeout(15000)
+    this.retries(3)
     const URL = global.NGROK_URL
     const { shortCode } = testInstance.configs
     const testMSISDN = 254708374149

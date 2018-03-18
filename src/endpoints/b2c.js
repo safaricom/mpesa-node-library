@@ -15,7 +15,7 @@
  * @param  {string} occasion
  * @return {Promise}
  */
-module.exports = async function (senderParty, receiverParty, amount, queueUrl, resultUrl, commandId = 'BusinessPayment', initiatorName = null,  remarks ='B2C Payment', occasion) {
+module.exports = async function (senderParty, receiverParty, amount, queueUrl, resultUrl, commandId = 'BusinessPayment', initiatorName = null, remarks = 'B2C Payment', occasion) {
   const securityCredential = this.security()
   const req = await this.request()
   return req.post('/mpesa/b2c/v1/paymentrequest', {

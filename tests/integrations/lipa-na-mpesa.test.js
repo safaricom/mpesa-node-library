@@ -6,10 +6,10 @@ describe('Lipa Na Mpesa Online Callbacks', function () {
   const testMSISDN = 254708374149
   const amount = 100
   it('gets a lipaNaMpesa success callback from Daraja', function (done) {
-    //Since we have to wait for a time out and das sad and
+    // Since we have to wait for a time out and das sad and
     this.timeout(200 * 1000) // 100s
     const URL = global.NGROK_URL
-    testInstance.lipaNaMpesaOnline(testMSISDN, amount, URL+ '/lipanampesa/success', Math.random().toString(35).substr(2, 7))
+    testInstance.lipaNaMpesaOnline(testMSISDN, amount, URL + '/lipanampesa/success', Math.random().toString(35).substr(2, 7))
       .then(({ data }) => {
         checkoutRequestId = data['CheckoutRequestID']
       })
@@ -30,6 +30,5 @@ describe('Lipa Na Mpesa Online Callbacks', function () {
     }).catch(e => {
       throw new Error('Something went wrong. Message: ' + e.message + ' ' + e.response.message)
     })
-
   })
 })
