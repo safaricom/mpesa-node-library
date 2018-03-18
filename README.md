@@ -61,7 +61,7 @@ new Mpesa({
 })
 ````
 ## API
-Please note that this library is in active development and **PLEASE DONT!!** not to use in **PRODUCTION**
+Please note that this library is in active development, use in production with caution.
 
 Current API:
 ````js
