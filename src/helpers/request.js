@@ -1,11 +1,9 @@
 const axios = require('axios')
-const baseURL = process.env.MPESA_BASE_URL || 'https://sandbox.safaricom.co.ke'
-const oAuth = require('.././endpoints/oauth')
-module.exports = async () => {
-  const credentials = await oAuth()
+module.exports = async function (_baseURL = null) {
+  const credentials = await this.oAuth()
   const instance = axios.create({
-    baseURL,
-    timeout: 1000,
+    baseURL: _baseURL || this.baseURL,
+    timeout: 5000,
     headers: {
       'Authorization': 'Bearer ' + credentials.data['access_token'],
       'Content-Type': 'application/json'

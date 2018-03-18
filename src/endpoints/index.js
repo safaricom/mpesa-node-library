@@ -5,6 +5,7 @@ const c2bRegister = require('./c2b-register')
 const c2bSimulate = require('./c2b-simulate')
 const lipaNaMpesaOnline = require('./lipa-na-mpesa-online')
 const lipaNaMpesaQuery = require('./lipa-na-mpesa-query')
+const oAuth = require('./oauth')
 const reversal = require('./reversal')
 const transactionStatus = require('./transaction-status')
 
@@ -17,5 +18,6 @@ module.exports = {
   lipaNaMpesaOnline,
   lipaNaMpesaQuery,
   reversal,
-  transactionStatus
+  transactionStatus,
+  oAuth
 }

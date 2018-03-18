@@ -2,7 +2,7 @@ const app = require('.././helpers/app')
 const ngrokify = require('.././helpers/ngrok')
 const ngrok = require('ngrok')
 
-before(async function() {
+before(async function () {
   this.timeout(15000)
   console.log('Setting up the callback server')
   await ngrok.disconnect()

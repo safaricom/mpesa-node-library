@@ -14,23 +14,49 @@ const {
   request,
   security
 } = require('./helpers')
+
+/**
+ * Class representing the Mpesa instance
+ * @borrows B2BRequest as b2bCall
+ */
 class Mpesa {
+  /**
+   * Introduce Mpesa Configuration
+   * @constructor
+   * @param {Object} [config={}] The Configuration  to use for mPesa
+   */
   constructor (config = {}) {
     if (!config.consumerKey) throw new Error('Consumer Key is Missing')
     if (!config.consumerSecret) throw new Error('Consumer Secret is Missing')
     this.configs = { ...config }
     this.enviroment = config.environment === 'production' ? 'production' : 'sandbox'
     this.request = request.bind(this)
-    this.security = security.bind(this)
+    this.security = () => {
+      return security(this.configs.certPath, this.configs.securityCredential)
+    }
+    this.baseURL = `https://${this.enviroment}.safaricom.co.ke`
   }
+
+  /**
+   * AccountBalance via instance
+   * @borrows AccountBalance as accountBalanceCall
+   */
   accountBalance () {
     return accountBalance.bind(this)(...arguments)
   }
 
+  /**
+   * B2B Request via instance
+   * @name b2bCall
+   */
   b2b () {
     return b2b.bind(this)(...arguments)
   }
 
+  /**
+   * B2C Request
+   * @borrows  as b2c
+   */
   b2c () {
     return b2c.bind(this)(...arguments)
   }
@@ -52,7 +78,8 @@ class Mpesa {
   }
 
   oAuth () {
-    return oAuth.bind(this)(...arguments)
+    const { consumerKey, consumerSecret } = this.configs
+    return oAuth.bind(this)(consumerKey, consumerSecret)
   }
 
   reversal () {
