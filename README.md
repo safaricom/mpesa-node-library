@@ -1,5 +1,7 @@
-# Node.js M-Pesa API 
+# Node.js M-Pesa API
 **M-Pesa Library for Node.js using REST API**
+
+![Node Mpesa Rest API](https://i.imgur.com/PRYk4Q3.jpg)
 
 <a href="https://standardjs.com" style="float: right; padding: 0 0 20px 20px;"><img src="https://cdn.rawgit.com/feross/standard/master/sticker.svg" alt="JavaScript Standard Style" width="100" align="right"></a>
 [![Build Status](https://travis-ci.org/geofmureithi/mpesa-node-library.svg?branch=master)](https://travis-ci.org/geofmureithi/mpesa-node-library)
@@ -16,8 +18,8 @@ npm i m-pesa
 ```
 
 ### Pre-Usage
-You need the following befor getting to use this library:
-1. Consumer Key and Consume Secret 
+You need the following before getting to use this library:
+1. Consumer Key and Consume Secret
 2. Test Credentials *(Optional only for sandbox)*
 
 ## Getting Started
@@ -29,11 +31,9 @@ const mpesaApi = new Mpesa({ consumerKey: '<your consumer key>', consumerSecret:
 // const instance = new Mpesa({ consumerKey: 'test', consumerSecret: 'test', environment: 'production' })
 mpesaApi
     .c2bSimulate(
-        '600133',
-        'CustomerPayBillOnline',
-        '300',
-        '254708374149',
-        '0000'
+        254708374149,
+        500,
+        'h6dk0Ue2'
     )
     .then((result) => {
         //do something
@@ -59,7 +59,7 @@ new Mpesa({
 })
 ````
 ## API
-Please note that this library is in active development and **PLEASE DONT!!** not to use in **PRODUCTION** 
+Please note that this library is in active development and **PLEASE DONT!!** not to use in **PRODUCTION**
 
 Current API:
 ````js
@@ -87,11 +87,12 @@ All calls are done by Axios, so for the response structure check Axios documenta
 This initiates a business to customer transactions from a company (shortcode) to end users (mobile numbers) of their services.
 ````js
 /*
- * b2c(initiatorName, commandId, amount, partyA, partyB, remarks, queueUrl, resultUrl, occasion)
+ * b2c(senderParty, receiverParty, amount, queueUrl, resultUrl, commandId = 'BusinessPayment', initiatorName = null, remarks = 'B2C Payment', occasion = null)
  * Example:
 */
-const { b2c } = mpesaApi
-await b2c('testapi', 'BusinessPayment', '100', '600133', '254708374149', 'test', 'http://randomurl.com', 'http://randomurl2.com')
+const { shortCode } = mpesaApi.configs
+const testMSISDN = 254708374149
+await mpesaApi.b2c(shortCode, testMSISDN, 100, URL + '/b2c/timeout', URL + '/b2c/success')
 ````
 
 2. [B2B Request](https://developer.safaricom.co.ke/b2b/apis/post/paymentrequest)
@@ -99,11 +100,12 @@ await b2c('testapi', 'BusinessPayment', '100', '600133', '254708374149', 'test',
 This initiates a business to business transaction between one company to another.
 ````js
 /*
- * b2c(initiator, commandId, senderId, receiverId, amount, partyA, partyB, accountRef, remarks, queueUrl, resultUrl, occasion)
- * Example: 
+ * b2c(senderParty, receiverParty, amount, queueUrl, resultUrl, senderType = 4, receiverType = 4, initiator = null, commandId = 'BusinessToBusinessTransfer', accountRef = null, remarks = 'B2B Request')
+ * Example:
 */
-const { b2b } = mpesaApi
-await b2b('testapi', 'BusinessPayBill', '4', '4', '1000', '600133', '600000', 'BusinessA', 'test', 'http://randomurl.com', 'http://randomurl2.com', 'test')
+const { shortCode } = mpesaApi.configs
+const testShortcode2 = 600000
+await mpesaApi.b2b(shortCode, testShortcode2, 100, URL + '/b2b/timeout', URL + '/b2b/success')
 ````
 3. [C2B Register](https://developer.safaricom.co.ke/c2b/apis/post/registerurl)
 
@@ -111,11 +113,11 @@ This initiates a C2B confirmation and validation registration for a company's UR
 
 ````js
 /*
- * c2bRegister(shortCode, responseType, confirmationUrl, validationUrl)
+ * c2bRegister(confirmationUrl, validationUrl, shortCode = null, responseType = 'Completed')
  * Example:
  */
-const { c2bRegister } = mpesaApi
-await c2bRegister('600133', 'Completed', 'http://randomurl.com', 'http://randomurl2.com')
+
+await mpesaApi.c2bRegister(URL + '/c2b/validation', URL + '/c2b/success')
 
 ````
 
@@ -125,11 +127,11 @@ This initiates a C2B transaction between an end-user and a company (paybill or t
 
 ````js
 /*
- * C2B_Simulate(shortCode, commandId, amount, msisdn, billRefNumber)
+ * c2bSimulate(msisdn, amount, billRefNumber, commandId = 'CustomerPayBillOnline', shortCode = null)
  * Example:
  */
-const { c2bSimulate } = mpesaApi
-await c2bSimulate('600133', 'CustomerPayBillOnline', '300', '254708374149', '0000')
+const testMSISDN = 254708374149
+await mPesa.c2bSimulate(testMSISDN, 100, Math.random().toString(35).substr(2, 7))
 
 ````
 5. [M-Pesa Express Request - Lipa Na M-Pesa Online Payment API](https://developer.safaricom.co.ke/lipa-na-m-pesa-online/apis/post/stkpush/v1/processrequest)
@@ -138,11 +140,13 @@ This initiates a Lipa Na M-Pesa Online Payment transaction using STK Push.
 
 ````js
 /*
- * lipaNaMpesaOnline(shortCode, timeStamp, passKey, transactionType, amount, partyA, partyB, phoneNumber, callbackUrl, accountRef, transactionDesc)
+ * lipaNaMpesaOnline(senderMsisdn, amount, callbackUrl, accountRef, transactionDesc = 'Lipa na mpesa online', transactionType = 'CustomerPayBillOnline', shortCode = null, passKey = null)
  * Example:
  */
-const { lipaNaMpesaOnline } = mpesaApi
-await lipaNaMpesaOnline('174379', '20180215123520', 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919', 'CustomerPayBillOnline', '1', '254708374149', '174379', '254708374149', 'http://randomurl.com', 'test', 'test')
+ const testMSISDN = 254708374149
+ const amount = 100
+ const accountRef = Math.random().toString(35).substr(2, 7)
+await mpesaApi.lipaNaMpesaOnline(testMSISDN, amount, URL + '/lipanampesa/success', accountRef)
 
 ````
 6. [M-Pesa Express Query Request - Lipa Na M-Pesa Query Request API](https://developer.safaricom.co.ke/lipa-na-m-pesa-online/apis/post/stkpushquery/v1/query)
@@ -151,22 +155,21 @@ This API checks the status of a Lipa Na M-Pesa Online Payment transaction
 
 ````js
 /*
- * lipaNaMpesaQuery(shortCode, timeStamp, passKey, checkoutRequestId)
+ * lipaNaMpesaQuery(checkoutRequestId, shortCode = null, passKey = null)
  * Example:
  */
-const { lipaNaMpesaQuery} = mpesaApi
-await lipaNaMpesaQuery(174379, '20180215123520', 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919', 'ws_co_123456789')
+const checkoutRequestId ='ws_co_123456789'
+await mpesaApi.lipaNaMpesaQuery(checkoutRequestId)
 ````
 7. [Reversal Request](https://developer.safaricom.co.ke/reversal/apis/post/request)
 
 This initiates an M-Pesa transaction reversal on B2B, B2C or C2B API
 ````js
 /*
- * reversal(initiator, commandId, transactionId, amount, receiverParty, receiverIdType, resultUrl, queueUrl, remarks, occasion)
+ * reversal(transactionId, amount, queueUrl, resultUrl, shortCode = null, remarks = 'Reversal', occasion = 'Reversal', initiator = null, receiverIdType = '11', commandId = 'TransactionReversal')
  * Example:
  */
-const { reversal } = mpesaApi
-await reversal('testapi', 'TransactionReversal', 'LKXXXX1234', '100', '600133', '11', 'http://randomurl.com', 'http://randomurl2.com', 'test', 'test')
+await mpesaApi.reversal('LKXXXX1234', 100, URL + '/reversal/timeout', URL + '/reversal/success')
 ````
 8. [Transaction Status Request](https://developer.safaricom.co.ke/transaction-status/apis/post/query)
 
@@ -174,11 +177,10 @@ This API is used to check the status of B2B, B2C and C2B transactions
 
 ````js
 /*
- * transactionStatus(initiator, commandId, transactionId, partyA, idType, resultUrl, queueUrl, remarks, occasion, originalConversationId)
+ * transactionStatus(transactionId, receiverParty, idType, queueUrl, resultUrl, remarks = 'TransactionReversal', occasion = 'TransactionReversal', initiator = null, commandId = 'TransactionStatusQuery')
  * Example:
  */
-const { transactionStatus } = mpesaApi
-await transactionStatus('testapi', 'TransactionStatusQuery', 'LKXXXX1234', '600133', '4', 'http://randomurl.com', 'http://randomurl2.com', 'test', '4455-6589979')
+await mpesaApi.transactionStatus('LKXXXX1234', shortCode, 4, URL + '/transactionstatus/timeout', URL + '/transactionstatus/success')
 ````
 9. [Account Balance Request](https://developer.safaricom.co.ke/account-balance/apis/post/query)
 
@@ -186,11 +188,11 @@ This initiates a request for the account balance of a shortcode
 
 ````js
 /*
- * accountBalance(initiator, commandId, partyA, idType, remarks, queueUrl, resultUrl)
+ * accountBalance(shortCode, idType, queueUrl, resultUrl, remarks = 'Checking account balance', initiator = null, commandId = 'AccountBalance')
  * Example:
  */
-const { accountBalance } = mpesaApi
-await accountBalance('testapi', 'AccountBalance', '600133', '4', 'test', 'http://randomurl.com', 'http://randomurl2.com')
+const { shortCode } = mpesaApi.configs
+await mpesaApi.accountBalance(shortCode, 4, URL + '/accountbalance/timeout', URL + '/accountbalance/success')
 ````
 ## Testing
 Testing needs you to clone this repo.
@@ -200,6 +202,17 @@ To run each separately, check `package.json` for the commands.
 ````
 npm test
 ````
+
+## Pending Stuff
+
+- [x] E2E Integration Tests
+- [x] Deploy to Npm
+- [x] Reduce number of args
+- [x] Detailed Documentation
+- [ ] Enumify
+- [ ] Validators for MSISDN and other expected inputs
+- [ ] More detailed Unit tests
+- [ ] Handle all Promises
 
 ## Contributing
 1. Create your feature branch: `git checkout -b my-new-feature`

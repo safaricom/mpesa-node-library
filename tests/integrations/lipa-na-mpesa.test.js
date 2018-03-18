@@ -7,7 +7,7 @@ describe('Lipa Na Mpesa Online Callbacks', function () {
   const amount = 100
   it('gets a lipaNaMpesa success callback from Daraja', function (done) {
     // Since we have to wait for a time out and das sad and
-    this.timeout(200 * 1000) // 100s
+    this.timeout(200 * 1000) // 200s
     const URL = global.NGROK_URL
     testInstance.lipaNaMpesaOnline(testMSISDN, amount, URL + '/lipanampesa/success', Math.random().toString(35).substr(2, 7))
       .then(({ data }) => {

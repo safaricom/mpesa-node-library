@@ -84,4 +84,36 @@ app.post('/lipanampesa/success', (req, res) => {
   })
 })
 
+// Reversal
+app.post('/reversal/timeout', (req, res) => {
+  emitter.emit('reversalTimeout', { simulation: true, success: true })
+  res.json({
+    'ResponseCode': '00000000',
+    'ResponseDesc': 'success'
+  })
+})
+app.post('/reversal/success', (req, res) => {
+  emitter.emit('reversalSuccessCallback', req.body)
+  res.json({
+    'ResponseCode': '00000000',
+    'ResponseDesc': 'success'
+  })
+})
+
+// Transaction Status
+app.post('/transactionstatus/timeout', (req, res) => {
+  emitter.emit('transactionStatusTimeout', { simulation: true, success: true })
+  res.json({
+    'ResponseCode': '00000000',
+    'ResponseDesc': 'success'
+  })
+})
+app.post('/transactionstatus/success', (req, res) => {
+  emitter.emit('transactionStatusSuccessCallback', req.body)
+  res.json({
+    'ResponseCode': '00000000',
+    'ResponseDesc': 'success'
+  })
+})
+
 module.exports = app

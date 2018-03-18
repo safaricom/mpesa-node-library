@@ -34,7 +34,7 @@ class Mpesa {
     this.security = () => {
       return security(this.configs.certPath, this.configs.securityCredential)
     }
-    this.baseURL = `https://${this.enviroment}.safaricom.co.ke`
+    this.baseURL = `https://${this.enviroment === 'production' ? 'api' : 'sandbox'}.safaricom.co.ke`
   }
 
   /**
@@ -55,7 +55,7 @@ class Mpesa {
 
   /**
    * B2C Request
-   * @borrows  as b2c
+   * @borrows B2CRequest as b2c
    */
   b2c () {
     return b2c.bind(this)(...arguments)
