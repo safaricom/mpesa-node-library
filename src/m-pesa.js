@@ -150,8 +150,6 @@ let mpesa = {
     C2B_Simulate(shortCode, commandId, amount, msisdn, billRefNumber) {
         this.O_Auth().then(response => {
             let accessToken = response.access_token;
-            let security_credential = this.security();
-            let token = accessToken;
             let options = {
                 method: 'POST',
                 //uri: 'https://api.safaricom.co.ke/mpesa/c2b/v1/simulate',
