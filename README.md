@@ -16,7 +16,7 @@
 ## Installation
 Use npm/yarn:
 ```
-npm i m-pesa
+npm i mpesa-node
 ```
 
 ### Pre-Usage
@@ -240,9 +240,11 @@ new Mpesa({
 
 ## Credits
 
-Made with :beer: by [Geoffrey Mureithi](https://mureithi.me)
+| **Commits** | **Contributor**<br/> | 
+| --- | --- |
+| 11 | [DGatere](https://github.com/DGatere) |
+| 38 | [geofmureithi](https://github.com/gnmureithi) |
 
-Any Opinions expressed in this lib/repo are mine and do not reflect any way those of Node.Js or Safaricom
 
 ## License
 
