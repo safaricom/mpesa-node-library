@@ -17,7 +17,6 @@ const {
 
 /**
  * Class representing the Mpesa instance
- * @borrows B2BRequest as b2bCall
  */
 class Mpesa {
   /**
@@ -60,11 +59,10 @@ class Mpesa {
   b2c () {
     return b2c.bind(this)(...arguments)
   }
-
+  
   c2bRegister () {
     return c2bRegister.bind(this)(...arguments)
   }
-
   c2bSimulate () {
     return c2bSimulate.bind(this)(...arguments)
   }
@@ -85,7 +83,7 @@ class Mpesa {
   reversal () {
     return reversal.bind(this)(...arguments)
   }
-
+          
   transactionStatus () {
     return transactionStatus.bind(this)(...arguments)
   }
