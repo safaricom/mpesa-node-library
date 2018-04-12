@@ -240,10 +240,10 @@ new Mpesa({
 
 ## Credits
 
-| **Commits** | **Contributor**<br/> | 
+| **Contributor**<br/> | 
 | --- | --- |
-| 11 | [DGatere](https://github.com/DGatere) |
-| 38 | [geofmureithi](https://github.com/gnmureithi) |
+| [DGatere](https://github.com/DGatere) |
+| [geofmureithi](https://github.com/gnmureithi) |
 
 
 ## License
