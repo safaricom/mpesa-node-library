@@ -240,9 +240,9 @@ new Mpesa({
 
 ## Credits
 
-| **Contributor**<br/> | 
-| --- | --- |
-| [DGatere](https://github.com/DGatere) |
+| **Contributor** | 
+<br/>
+| [DGatere](https://github.com/DGatere) |<br/>
 | [geofmureithi](https://github.com/gnmureithi) |
 
 
