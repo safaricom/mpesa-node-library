@@ -243,7 +243,7 @@ new Mpesa({
 | **Contributor** | 
 <br/>
 | [DGatere](https://github.com/DGatere) |<br/>
-| [geofmureithi](https://github.com/gnmureithi) |
+| [geofmureithi](https://github.com/geofmureithi) |
 
 
 ## License
