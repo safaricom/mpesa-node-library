@@ -1,6 +1,7 @@
 const expect = require('expect.js')
 const Mpesa = require('../.././src/m-pesa')
 const instance = new Mpesa({ consumerKey: 'test', consumerSecret: 'test' })
+const testInstance = require('./../helpers/instance')
 const {
   accountBalance,
   b2b,
@@ -52,15 +53,7 @@ describe('C2B', function () {
     }
   })
 
-  it('should not throw error', function () {
-    let threwError = false
-    
-    try {
-      instance.c2bSimulate().then(() => {}).catch(() => {})
-    } catch (e) {
-      threwError = true
-    } finally {
-      expect(threwError).to.be(false)
-    }
+  it('should not throw error', function () {    
+    testInstance.c2bSimulate(254708374149, 500, 'h6dk0Ue2')
   })
 })
