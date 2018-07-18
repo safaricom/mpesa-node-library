@@ -64,6 +64,9 @@ class Mpesa {
     return c2bRegister.bind(this)(...arguments)
   }
   c2bSimulate () {
+    if(this.enviroment === 'production'){
+      throw new Error('Cannot call C2B simulate in production.')
+    }
     return c2bSimulate.bind(this)(...arguments)
   }
 
