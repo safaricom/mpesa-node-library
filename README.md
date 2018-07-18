@@ -4,9 +4,9 @@
 ![Node Mpesa Rest API](https://i.imgur.com/PRYk4Q3.jpg)
 
 <a href="https://standardjs.com" style="float: right; padding: 0 0 20px 20px;"><img src="https://cdn.rawgit.com/feross/standard/master/sticker.svg" alt="JavaScript Standard Style" width="100" align="right"></a>
-[![Build Status](https://travis-ci.org/geofmureithi/mpesa-node-library.svg?branch=master)](https://travis-ci.org/geofmureithi/mpesa-node-library)
+[![Build Status](https://travis-ci.org/safaricom/mpesa-node-library.svg?branch=master)](https://travis-ci.org/geofmureithi/mpesa-node-library)
 [![Made in Africa](https://img.shields.io/badge/Africa's%20Rising-%E2%9C%93-green.svg)](https://github.com/collections/made-in-africa)
-[![Known Vulnerabilities](https://snyk.io/test/github/geofmureithi/mpesa-node-library/badge.svg?targetFile=package.json)](https://snyk.io/test/github/geofmureithi/mpesa-node-library?targetFile=package.json)
+[![Known Vulnerabilities](https://snyk.io/test/github/safaricom/mpesa-node-library/badge.svg?targetFile=package.json)](https://snyk.io/test/github/safaricom/mpesa-node-library?targetFile=package.json)
 
 ## Prerequisites
 1. Node v6+, 8+ recommended.
@@ -84,7 +84,7 @@ All methods return a `<Promise>`, hence you can use `.then` or `await`.
 All calls are done by Axios, so for the response structure check Axios documentation.
 
 ### Methods
-1. [B2C Request](https://developer.safaricom.co.ke/b2c/apis/post/paymentrequest)
+• [B2C Request](https://developer.safaricom.co.ke/b2c/apis/post/paymentrequest)
 
 This initiates a business to customer transactions from a company (shortcode) to end users (mobile numbers) of their services.
 ````js
@@ -97,7 +97,7 @@ const testMSISDN = 254708374149
 await mpesaApi.b2c(shortCode, testMSISDN, 100, URL + '/b2c/timeout', URL + '/b2c/success')
 ````
 
-2. [B2B Request](https://developer.safaricom.co.ke/b2b/apis/post/paymentrequest)
+• [B2B Request](https://developer.safaricom.co.ke/b2b/apis/post/paymentrequest)
 
 This initiates a business to business transaction between one company to another.
 ````js
@@ -109,7 +109,7 @@ const { shortCode } = mpesaApi.configs
 const testShortcode2 = 600000
 await mpesaApi.b2b(shortCode, testShortcode2, 100, URL + '/b2b/timeout', URL + '/b2b/success')
 ````
-3. [C2B Register](https://developer.safaricom.co.ke/c2b/apis/post/registerurl)
+• [C2B Register](https://developer.safaricom.co.ke/c2b/apis/post/registerurl)
 
 This initiates a C2B confirmation and validation registration for a company's URLs
 
@@ -123,7 +123,7 @@ await mpesaApi.c2bRegister(URL + '/c2b/validation', URL + '/c2b/success')
 
 ````
 
-4. [C2B Simulate](https://developer.safaricom.co.ke/c2b/apis/post/simulate)
+• [C2B Simulate](https://developer.safaricom.co.ke/c2b/apis/post/simulate)
 
 This initiates a C2B transaction between an end-user and a company (paybill or till number)
 
@@ -136,7 +136,7 @@ const testMSISDN = 254708374149
 await mPesa.c2bSimulate(testMSISDN, 100, Math.random().toString(35).substr(2, 7))
 
 ````
-5. [M-Pesa Express Request - Lipa Na M-Pesa Online Payment API](https://developer.safaricom.co.ke/lipa-na-m-pesa-online/apis/post/stkpush/v1/processrequest)
+• [M-Pesa Express Request - Lipa Na M-Pesa Online Payment API](https://developer.safaricom.co.ke/lipa-na-m-pesa-online/apis/post/stkpush/v1/processrequest)
 
 This initiates a Lipa Na M-Pesa Online Payment transaction using STK Push.
 
@@ -151,7 +151,7 @@ This initiates a Lipa Na M-Pesa Online Payment transaction using STK Push.
 await mpesaApi.lipaNaMpesaOnline(testMSISDN, amount, URL + '/lipanampesa/success', accountRef)
 
 ````
-6. [M-Pesa Express Query Request - Lipa Na M-Pesa Query Request API](https://developer.safaricom.co.ke/lipa-na-m-pesa-online/apis/post/stkpushquery/v1/query)
+• [M-Pesa Express Query Request - Lipa Na M-Pesa Query Request API](https://developer.safaricom.co.ke/lipa-na-m-pesa-online/apis/post/stkpushquery/v1/query)
 
 This API checks the status of a Lipa Na M-Pesa Online Payment transaction
 
@@ -163,7 +163,7 @@ This API checks the status of a Lipa Na M-Pesa Online Payment transaction
 const checkoutRequestId ='ws_co_123456789'
 await mpesaApi.lipaNaMpesaQuery(checkoutRequestId)
 ````
-7. [Reversal Request](https://developer.safaricom.co.ke/reversal/apis/post/request)
+• [Reversal Request](https://developer.safaricom.co.ke/reversal/apis/post/request)
 
 This initiates an M-Pesa transaction reversal on B2B, B2C or C2B API
 ````js
@@ -184,7 +184,7 @@ This API is used to check the status of B2B, B2C and C2B transactions
  */
 await mpesaApi.transactionStatus('LKXXXX1234', shortCode, 4, URL + '/transactionstatus/timeout', URL + '/transactionstatus/success')
 ````
-9. [Account Balance Request](https://developer.safaricom.co.ke/account-balance/apis/post/query)
+• [Account Balance Request](https://developer.safaricom.co.ke/account-balance/apis/post/query)
 
 This initiates a request for the account balance of a shortcode
 
@@ -229,7 +229,7 @@ new Mpesa({
 - [x] Detailed Documentation
 - [ ] Enumify
 - [ ] Validators for MSISDN and other expected inputs
-- [ ] More detailed Unit tests
+- [x] More detailed Unit tests
 - [ ] Handle all Promises
 
 ## Contributing
