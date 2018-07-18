@@ -1,10 +1,10 @@
 {
   "name": "mpesa-node",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Node M-Pesa Library",
   "repository": {
     "type": "git",
-    "url": "https://github.com/geofmureithi/mpesa-node-library"
+    "url": "https://github.com/safaricom/mpesa-node-library"
   },
   "main": "src/m-pesa.js",
   "dependencies": {
