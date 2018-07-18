@@ -4,7 +4,7 @@
 ![Node Mpesa Rest API](https://i.imgur.com/PRYk4Q3.jpg)
 
 <a href="https://standardjs.com" style="float: right; padding: 0 0 20px 20px;"><img src="https://cdn.rawgit.com/feross/standard/master/sticker.svg" alt="JavaScript Standard Style" width="100" align="right"></a>
-[![Build Status](https://travis-ci.org/safaricom/mpesa-node-library.svg?branch=master)](https://travis-ci.org/geofmureithi/mpesa-node-library)
+[![Build Status](https://travis-ci.org/safaricom/mpesa-node-library.svg?branch=master)](https://travis-ci.org/safaricom/mpesa-node-library)
 [![Made in Africa](https://img.shields.io/badge/Africa's%20Rising-%E2%9C%93-green.svg)](https://github.com/collections/made-in-africa)
 [![Known Vulnerabilities](https://snyk.io/test/github/safaricom/mpesa-node-library/badge.svg?targetFile=package.json)](https://snyk.io/test/github/safaricom/mpesa-node-library?targetFile=package.json)
 
@@ -240,7 +240,7 @@ new Mpesa({
 
 ## Credits
 
-| **Contributor** | 
+| **Contributor** |
 <br/>
 | [DGatere](https://github.com/DGatere) |<br/>
 | [geofmureithi](https://github.com/geofmureithi) |
