@@ -22,8 +22,8 @@ describe('Account Callbacks', function () {
     this.timeout(15000)
     const URL = global.NGROK_URL
     const { shortCode } = testInstance.configs
+    this.retries(3)
     testInstance.accountBalance(shortCode, 4, URL + '/accountbalance/timeout', URL + '/accountbalance/success').catch(e => {
-      console.log(e)
       throw new Error('Something went wrong. Message: ' + e.message)
     })
     emitter.once('accountBalanceCallback', function (payload) {
