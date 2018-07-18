@@ -31,3 +31,24 @@ describe('All Methods are Callble', function () {
     })
   })
 })
+
+describe('C2B', function () {
+  const productionInstance = new Mpesa({
+    consumerKey: 'test',
+    consumerSecret: 'test',
+    environment: 'production'
+  })
+
+  it('should throw error in production', function () {
+    let threwError = false
+    
+    try {
+      productionInstance.c2bSimulate()
+    } catch (e) {
+      threwError = true
+      expect(e.message).to.be('Cannot call C2B simulate in production.')
+    } finally {
+      expect(threwError).to.be(true)
+    }
+  })
+})
