@@ -173,7 +173,7 @@ This initiates an M-Pesa transaction reversal on B2B, B2C or C2B API
  */
 await mpesaApi.reversal('LKXXXX1234', 100, URL + '/reversal/timeout', URL + '/reversal/success')
 ````
-8. [Transaction Status Request](https://developer.safaricom.co.ke/transaction-status/apis/post/query)
+• [Transaction Status Request](https://developer.safaricom.co.ke/transaction-status/apis/post/query)
 
 This API is used to check the status of B2B, B2C and C2B transactions
 
