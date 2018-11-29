@@ -20,6 +20,9 @@ npm i mpesa-node
 ```
 
 ### Pre-Usage
+
+**Please make sure you have read the documentation on [Daraja](https://developer.safaricom.co.ke/home) before continuing.**
+
 You need the following before getting to use this library:
 1. Consumer Key and Consume Secret
 2. Test Credentials *(Optional only for sandbox)*
