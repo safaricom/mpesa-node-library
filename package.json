@@ -8,7 +8,7 @@
   },
   "main": "src/m-pesa.js",
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.19.0"
   },
   "devDependencies": {
     "body-parser": "^1.18.2",
