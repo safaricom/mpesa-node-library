@@ -1,3 +1,6 @@
+import Mpesa from '../';
+import { AxiosResponse } from 'axios';
+
 /**
  * C2B Register URL
  * @name C2BRegister
@@ -10,12 +13,21 @@
  * @param  {string} [responseType='Completed'] Default response type for timeout. Incase a tranaction times out, Mpesa will by default Complete or Cancel the transaction
  * @return {Promise}
  */
-module.exports = async function (confirmationUrl, validationUrl, shortCode = null, responseType = 'Completed') {
-  const req = await this.request()
+export type C2BRegisterOptions = {
+  confirmationUrl: string;
+  validationUrl: string;
+  shortCode?: number;
+  responseType?: string;
+};
+export async function c2bRegister(
+  mpesa: Mpesa,
+  options: C2BRegisterOptions
+): Promise<AxiosResponse<any>> {
+  const req = await mpesa.request();
   return req.post('/mpesa/c2b/v1/registerurl', {
-    'ShortCode': shortCode || this.configs.shortCode,
-    'ResponseType': responseType,
-    'ConfirmationURL': confirmationUrl,
-    'ValidationURL': validationUrl
-  })
+    ShortCode: options.shortCode || mpesa.configs.shortCode,
+    ResponseType: options.responseType || 'Completed',
+    ConfirmationURL: options.confirmationUrl,
+    ValidationURL: options.validationUrl,
+  });
 }

@@ -1,3 +1,5 @@
+import Mpesa from '../';
+import { AxiosResponse } from 'axios';
 /**
  * B2C Payment Request
  * @name B2CRequest
@@ -15,19 +17,33 @@
  * @param  {string} occasion
  * @return {Promise}
  */
-module.exports = async function (senderParty, receiverParty, amount, queueUrl, resultUrl, commandId = 'BusinessPayment', initiatorName = null, remarks = 'B2C Payment', occasion) {
-  const securityCredential = this.security()
-  const req = await this.request()
+export type B2COptions = {
+  senderParty: number;
+  receiverParty: number;
+  amount: number;
+  queueUrl: string;
+  resultUrl: string;
+  commandId?: 'SalaryPayment' | 'BusinessPayment' | 'PromotionPayment';
+  initiatorName?: string;
+  remarks?: string;
+  occasion: string;
+};
+export async function b2c(
+  mpesa: Mpesa,
+  options: B2COptions
+): Promise<AxiosResponse<any>> {
+  const securityCredential = mpesa.security();
+  const req = await mpesa.request();
   return req.post('/mpesa/b2c/v1/paymentrequest', {
-    'InitiatorName': initiatorName || this.configs.initiatorName,
-    'SecurityCredential': securityCredential,
-    'CommandID': commandId,
-    'Amount': amount,
-    'PartyA': senderParty,
-    'PartyB': receiverParty,
-    'Remarks': remarks,
-    'QueueTimeOutURL': queueUrl,
-    'ResultURL': resultUrl,
-    'Occasion': occasion
-  })
+    InitiatorName: options.initiatorName || mpesa.configs.initiatorName,
+    SecurityCredential: securityCredential,
+    CommandID: options.commandId || 'BusinessPayment',
+    Amount: options.amount,
+    PartyA: options.senderParty,
+    PartyB: options.receiverParty,
+    Remarks: options.remarks || 'B2C Payment',
+    QueueTimeOutURL: options.queueUrl,
+    ResultURL: options.resultUrl,
+    Occasion: options.occasion,
+  });
 }

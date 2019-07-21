@@ -1,7 +1,10 @@
+import Mpesa from '../';
+import { AxiosResponse } from 'axios';
+
 /**
  * Transaction Status Request
  * @name TransactionStatus
- * @description Use this api to check the transaction status.
+ * @description Use mpesa api to check the transaction status.
  * @function
  * @see {@link https://developer.safaricom.co.ke/transaction-status/apis/post/query| Transaction Status Request }
  * @param  {string} transactionId                        Unique identifier to identify a transaction on M-Pesa
@@ -15,19 +18,33 @@
  * @param  {String} [commandId='TransactionStatusQuery'] Takes only 'TransactionStatusQuery' command id
  * @return {Promise}
  */
-module.exports = async function (transactionId, receiverParty, idType, queueUrl, resultUrl, remarks = 'TransactionReversal', occasion = 'TransactionReversal', initiator = null, commandId = 'TransactionStatusQuery') {
-  const securityCredential = this.security()
-  const req = await this.request()
+export type TransactionStatusOptions = {
+  transactionId: string;
+  receiverParty: number;
+  idType: number;
+  queueUrl: string;
+  resultUrl: string;
+  remarks?: string;
+  occasion?: string;
+  initiator?: string;
+  commandId?: string;
+};
+export async function transactionStatus(
+  mpesa: Mpesa,
+  options: TransactionStatusOptions
+): Promise<AxiosResponse<any>> {
+  const securityCredential = mpesa.security();
+  const req = await mpesa.request();
   return req.post('/mpesa/transactionstatus/v1/query', {
-    'Initiator': initiator || this.configs.initiatorName,
-    'SecurityCredential': securityCredential,
-    'CommandID': commandId,
-    'TransactionID': transactionId,
-    'PartyA': receiverParty,
-    'IdentifierType': idType,
-    'ResultURL': resultUrl,
-    'QueueTimeOutURL': queueUrl,
-    'Remarks': remarks,
-    'Occasion': occasion
-  })
+    Initiator: options.initiator || mpesa.configs.initiatorName,
+    SecurityCredential: securityCredential,
+    CommandID: options.commandId || 'TransactionStatusQuery',
+    TransactionID: options.transactionId,
+    PartyA: options.receiverParty,
+    IdentifierType: options.idType,
+    ResultURL: options.resultUrl,
+    QueueTimeOutURL: options.queueUrl,
+    Remarks: options.remarks || 'TransactionReversal',
+    Occasion: options.occasion || 'TransactionReversal',
+  });
 }

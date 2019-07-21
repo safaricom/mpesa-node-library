@@ -1,3 +1,6 @@
+import Mpesa from '../';
+import { AxiosResponse } from 'axios';
+
 /**
  * Reversal Request
  * @name ReversalRequest
@@ -15,20 +18,35 @@
  * @param  {String} [commandId='TransactionReversal'] Takes only 'TransactionReversal' Command id
  * @return {Promise}
  */
-module.exports = async function (transactionId, amount, queueUrl, resultUrl, shortCode = null, remarks = 'Reversal', occasion = 'Reversal', initiator = null, receiverIdType = '11', commandId = 'TransactionReversal') {
-  const securityCredential = this.security()
-  const req = await this.request()
+export type ReversalOptions = {
+  transactionId: string;
+  amount: number;
+  queueUrl: string;
+  resultUrl: string;
+  shortCode?: string;
+  remarks?: string;
+  occasion?: string;
+  initiator?: string;
+  receiverIdType?: string;
+  commandId?: string;
+};
+export async function reversal(
+  mpesa: Mpesa,
+  options: ReversalOptions
+): Promise<AxiosResponse<any>> {
+  const securityCredential = mpesa.security();
+  const req = await mpesa.request();
   return req.post('/mpesa/reversal/v1/request', {
-    'Initiator': initiator || this.configs.initiatorName,
-    'SecurityCredential': securityCredential,
-    'CommandID': commandId,
-    'TransactionID': transactionId,
-    'Amount': amount,
-    'ReceiverParty': shortCode || this.configs.shortCode,
-    'RecieverIdentifierType': receiverIdType,
-    'ResultURL': resultUrl,
-    'QueueTimeOutURL': queueUrl,
-    'Remarks': remarks,
-    'Occasion': occasion
-  })
+    Initiator: options.initiator || mpesa.configs.initiatorName,
+    SecurityCredential: securityCredential,
+    CommandID: options.commandId || 'TransactionReversal',
+    TransactionID: options.transactionId,
+    Amount: options.amount,
+    ReceiverParty: options.shortCode || mpesa.configs.shortCode,
+    RecieverIdentifierType: options.receiverIdType || '11',
+    ResultURL: options.resultUrl,
+    QueueTimeOutURL: options.queueUrl,
+    Remarks: options.remarks || 'Reversal',
+    Occasion: options.occasion || 'Reversal',
+  });
 }
