@@ -84,7 +84,7 @@ const {
 Ofcourse you dont need to import all methods, you can import the only ones you need.
 
 All methods return a `<Promise>`, hence you can use `.then` or `await`.
-All calls are done by Axios, so for the response structure check Axios documentation.
+All calls are done by Axios, so for the response structure check [Axios documentation](https://github.com/axios/axios#response-schema).
 
 ### Methods
 • [B2C Request](https://developer.safaricom.co.ke/b2c/apis/post/paymentrequest)
