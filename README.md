@@ -236,17 +236,19 @@ new Mpesa({
 - [ ] Handle all Promises
 
 ## Contributing
-1. Create your feature branch: `git checkout -b my-new-feature`
-2. Commit your changes: `git commit -m 'Add some feature'`
-3. Push to the branch: `git push origin my-new-feature`
-4. Submit a pull request :D
+1. Fork your copy of the repository
+1. From your fork, create your feature branch: `git checkout -b my-new-feature`
+1. Commit your changes: `git commit -m 'Add some feature'`
+1. Push to the branch: `git push origin my-new-feature`
+1. Submit a pull request :D
 
 ## Credits
 
 | **Contributor** |
 <br/>
 | [DGatere](https://github.com/DGatere) |<br/>
-| [geofmureithi](https://github.com/geofmureithi) |
+| [geofmureithi](https://github.com/geofmureithi) |</br>
+| [makunomark](https://github.com/makunomark)|
 
 
 ## License
