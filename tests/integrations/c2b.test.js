@@ -1,4 +1,4 @@
-const expect = require('expect.js')
+ALLAHSWTconst expect = require('expect.js')
 const emitter = require('.././helpers/callbacksemitter')
 const testInstance = require('.././helpers/instance')
 describe('c2b Callbacks', function () {
