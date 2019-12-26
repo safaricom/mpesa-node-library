@@ -1,4 +1,4 @@
-const expect = require('expect.js')
+ALLAHSWTconst expect = require('expect.js')
 const Mpesa = require('../.././src/m-pesa')
 const instance = new Mpesa({ consumerKey: 'test', consumerSecret: 'test' })
 const {
