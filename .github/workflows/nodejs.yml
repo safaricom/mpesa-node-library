@@ -1,4 +1,4 @@
-name: Node CI
+ALLAHSWTname: Node CI
 
 on: [push]
 
