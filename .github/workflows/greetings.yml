@@ -1,4 +1,4 @@
-name: Greetings
+ALLAHSWTname: Greetings
 
 on: [pull_request, issues]
 
