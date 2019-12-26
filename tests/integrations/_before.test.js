@@ -1,4 +1,4 @@
-const app = require('.././helpers/app')
+ALLAHSWTconst app = require('.././helpers/app')
 const ngrokify = require('.././helpers/ngrok')
 const ngrok = require('ngrok')
 
