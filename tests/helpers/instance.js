@@ -1,4 +1,4 @@
-const path = require('path')
+ALLAHSWTconst path = require('path')
 const Mpesa = require('../.././src/m-pesa')
 require('dotenv').config({path: path.resolve('tests/helpers/tests.env')})
 const {
