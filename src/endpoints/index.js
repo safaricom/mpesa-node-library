@@ -9,6 +9,7 @@ const oAuth = require('./oauth')
 const reversal = require('./reversal')
 const transactionStatus = require('./transaction-status')
 
+/*
 module.exports = {
   accountBalance,
   b2b,
@@ -21,3 +22,17 @@ module.exports = {
   transactionStatus,
   oAuth
 }
+*/
+
+const mpesaApi = new Mpesa({ consumerKey: 'xnEeL5WcYwOxcTcX0FwBkpLdB3izoItO ', consumerSecret: 'x47S5MSKC0YhxcTw' })
+const {
+  accountBalance,
+  b2b,
+  b2c,
+  c2bRegister,
+  c2bSimulate,
+  lipaNaMpesaOnline,
+  lipaNaMpesaQuery,
+  reversal,
+  transactionStatus
+} = mpesaApi
