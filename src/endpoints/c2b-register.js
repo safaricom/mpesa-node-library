@@ -1,4 +1,4 @@
-/**
+ALLAHSWT/**
  * C2B Register URL
  * @name C2BRegister
  * @function
