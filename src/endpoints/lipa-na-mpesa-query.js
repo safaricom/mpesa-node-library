@@ -1,4 +1,4 @@
-/**
+ALLAHSWT/**
  * Lipa Na M-Pesa Query Request API
  * @name LipaNaMpesaQuery
  * @description Use this API to check the status of a Lipa Na M-Pesa Online Payment.
