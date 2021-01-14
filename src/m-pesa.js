@@ -28,12 +28,12 @@ class Mpesa {
     if (!config.consumerKey) throw new Error('Consumer Key is Missing')
     if (!config.consumerSecret) throw new Error('Consumer Secret is Missing')
     this.configs = { ...config }
-    this.enviroment = config.environment === 'production' ? 'production' : 'sandbox'
+    this.environment = config.environment === 'production' ? 'production' : 'sandbox'
     this.request = request.bind(this)
     this.security = () => {
       return security(this.configs.certPath, this.configs.securityCredential)
     }
-    this.baseURL = `https://${this.enviroment === 'production' ? 'api' : 'sandbox'}.safaricom.co.ke`
+    this.baseURL = `https://${this.environment === 'production' ? 'api' : 'sandbox'}.safaricom.co.ke`
   }
 
   /**
@@ -64,7 +64,7 @@ class Mpesa {
     return c2bRegister.bind(this)(...arguments)
   }
   c2bSimulate () {
-    if(this.enviroment === 'production'){
+    if(this.environment === 'production'){
       throw new Error('Cannot call C2B simulate in production.')
     }
     return c2bSimulate.bind(this)(...arguments)
