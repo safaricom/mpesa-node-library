@@ -1,7 +1,4 @@
-const request = require('./request')
-const security = require('./security')
-
 module.exports = {
-  request,
-  security
+  request: require('./request'),
+  security: require('./security')
 }

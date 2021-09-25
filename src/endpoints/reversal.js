@@ -15,7 +15,7 @@
  * @param  {String} [commandId='TransactionReversal'] Takes only 'TransactionReversal' Command id
  * @return {Promise}
  */
-module.exports = async function (transactionId, amount, queueUrl, resultUrl, shortCode = null, remarks = 'Reversal', occasion = 'Reversal', initiator = null, receiverIdType = '11', commandId = 'TransactionReversal') {
+module.exports = async (transactionId, amount, queueUrl, resultUrl, shortCode = null, remarks = 'Reversal', occasion = 'Reversal', initiator = null, receiverIdType = '11', commandId = 'TransactionReversal') => {
   const securityCredential = this.security()
   const req = await this.request()
   return req.post('/mpesa/reversal/v1/request', {

@@ -8,7 +8,7 @@
  * @param  {string} [passKey=null]    lipaNaMpesa Pass Key
  * @return {Promise}
  */
-module.exports = async function (checkoutRequestId, shortCode = null, passKey = null) {
+module.exports = async (checkoutRequestId, shortCode = null, passKey = null) => {
   const _shortCode = shortCode || this.configs.lipaNaMpesaShortCode
   const _passKey = passKey || this.configs.lipaNaMpesaShortPass
   const timeStamp = (new Date()).toISOString().replace(/[^0-9]/g, '').slice(0, -3)
