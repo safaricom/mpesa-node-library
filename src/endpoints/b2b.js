@@ -17,7 +17,7 @@
  * @param  {String}  [remarks='B2B Request']                  Comments that are sent along with the transaction.
  * @return {Promise}
  */
-module.exports = async function (senderParty, receiverParty, amount, queueUrl, resultUrl, senderType = 4, receiverType = 4, initiator = null, commandId = 'BusinessToBusinessTransfer', accountRef = null, remarks = 'B2B Request') {
+module.exports = async (senderParty, receiverParty, amount, queueUrl, resultUrl, senderType = 4, receiverType = 4, initiator = null, commandId = 'BusinessToBusinessTransfer', accountRef = null, remarks = 'B2B Request') => {
   const req = await this.request()
   const securityCredential = this.security()
   return req.post('/mpesa/b2b/v1/paymentrequest', {

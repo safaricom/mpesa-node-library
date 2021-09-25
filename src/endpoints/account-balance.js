@@ -12,7 +12,7 @@
  * @param  {String} [commandId='AccountBalance']   Takes only 'AccountBalance' CommandID
  * @return {Promise}                    This returns a promise that resolves to the account balance
  */
-module.exports = async function accountBalance (shortCode, idType, queueUrl, resultUrl, remarks = 'Checking account balance', initiator = null, commandId = 'AccountBalance') {
+exports.accountBalance = async (shortCode, idType, queueUrl, resultUrl, remarks = 'Checking account balance', initiator = null, commandId = 'AccountBalance') => {
   const securityCredential = this.security()
   const req = await this.request()
   return req.post('/mpesa/accountbalance/v1/query', {
