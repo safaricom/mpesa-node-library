@@ -15,19 +15,29 @@
  * @param  {String} [commandId='TransactionStatusQuery'] Takes only 'TransactionStatusQuery' command id
  * @return {Promise}
  */
-module.exports = async function (transactionId, receiverParty, idType, queueUrl, resultUrl, remarks = 'TransactionReversal', occasion = 'TransactionReversal', initiator = null, commandId = 'TransactionStatusQuery') {
-  const securityCredential = this.security()
-  const req = await this.request()
+module.exports = async function (
+  transactionId,
+  receiverParty,
+  idType,
+  queueUrl,
+  resultUrl,
+  remarks = 'TransactionReversal',
+  occasion = 'TransactionReversal',
+  initiator = null,
+  commandId = 'TransactionStatusQuery'
+) {
+  const securityCredential = this.security();
+  const req = await this.request();
   return req.post('/mpesa/transactionstatus/v1/query', {
-    'Initiator': initiator || this.configs.initiatorName,
-    'SecurityCredential': securityCredential,
-    'CommandID': commandId,
-    'TransactionID': transactionId,
-    'PartyA': receiverParty,
-    'IdentifierType': idType,
-    'ResultURL': resultUrl,
-    'QueueTimeOutURL': queueUrl,
-    'Remarks': remarks,
-    'Occasion': occasion
-  })
-}
+    Initiator: initiator || this.configs.initiatorName,
+    SecurityCredential: securityCredential,
+    CommandID: commandId,
+    TransactionID: transactionId,
+    PartyA: receiverParty,
+    IdentifierType: idType,
+    ResultURL: resultUrl,
+    QueueTimeOutURL: queueUrl,
+    Remarks: remarks,
+    Occasion: occasion,
+  });
+};

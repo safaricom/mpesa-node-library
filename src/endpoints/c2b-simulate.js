@@ -11,13 +11,19 @@
  * @param  {number} [shortCode=null]                    Short Code receiving the amount being transacted
  * @return {Promise}
  */
-module.exports = async function (msisdn, amount, billRefNumber, commandId = 'CustomerPayBillOnline', shortCode = null) {
-  const req = await this.request()
+module.exports = async function (
+  msisdn,
+  amount,
+  billRefNumber,
+  commandId = 'CustomerPayBillOnline',
+  shortCode = null
+) {
+  const req = await this.request();
   return req.post('/mpesa/c2b/v1/simulate', {
-    'ShortCode': shortCode || this.configs.shortCode,
-    'CommandID': commandId,
-    'Amount': amount,
-    'Msisdn': msisdn,
-    'BillRefNumber': billRefNumber
-  })
-}
+    ShortCode: shortCode || this.configs.shortCode,
+    CommandID: commandId,
+    Amount: amount,
+    Msisdn: msisdn,
+    BillRefNumber: billRefNumber,
+  });
+};

@@ -10,12 +10,17 @@
  * @param  {string} [responseType='Completed'] Default response type for timeout. Incase a tranaction times out, Mpesa will by default Complete or Cancel the transaction
  * @return {Promise}
  */
-module.exports = async function (confirmationUrl, validationUrl, shortCode = null, responseType = 'Completed') {
-  const req = await this.request()
+module.exports = async function (
+  confirmationUrl,
+  validationUrl,
+  shortCode = null,
+  responseType = 'Completed'
+) {
+  const req = await this.request();
   return req.post('/mpesa/c2b/v1/registerurl', {
-    'ShortCode': shortCode || this.configs.shortCode,
-    'ResponseType': responseType,
-    'ConfirmationURL': confirmationUrl,
-    'ValidationURL': validationUrl
-  })
-}
+    ShortCode: shortCode || this.configs.shortCode,
+    ResponseType: responseType,
+    ConfirmationURL: confirmationUrl,
+    ValidationURL: validationUrl,
+  });
+};
