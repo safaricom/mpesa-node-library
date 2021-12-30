@@ -17,21 +17,33 @@
  * @param  {String}  [remarks='B2B Request']                  Comments that are sent along with the transaction.
  * @return {Promise}
  */
-module.exports = async function (senderParty, receiverParty, amount, queueUrl, resultUrl, senderType = 4, receiverType = 4, initiator = null, commandId = 'BusinessToBusinessTransfer', accountRef = null, remarks = 'B2B Request') {
-  const req = await this.request()
-  const securityCredential = this.security()
+module.exports = async function (
+  senderParty,
+  receiverParty,
+  amount,
+  queueUrl,
+  resultUrl,
+  senderType = 4,
+  receiverType = 4,
+  initiator = null,
+  commandId = 'BusinessToBusinessTransfer',
+  accountRef = null,
+  remarks = 'B2B Request'
+) {
+  const req = await this.request();
+  const securityCredential = this.security();
   return req.post('/mpesa/b2b/v1/paymentrequest', {
-    'Initiator': initiator || this.configs.initiatorName,
-    'SecurityCredential': securityCredential,
-    'CommandID': commandId,
-    'SenderIdentifierType': senderType,
-    'RecieverIdentifierType': receiverType,
-    'Amount': amount,
-    'PartyA': senderParty,
-    'PartyB': receiverParty,
-    'AccountReference': accountRef,
-    'Remarks': remarks,
-    'QueueTimeOutURL': queueUrl,
-    'ResultURL': resultUrl
-  })
-}
+    Initiator: initiator || this.configs.initiatorName,
+    SecurityCredential: securityCredential,
+    CommandID: commandId,
+    SenderIdentifierType: senderType,
+    RecieverIdentifierType: receiverType,
+    Amount: amount,
+    PartyA: senderParty,
+    PartyB: receiverParty,
+    AccountReference: accountRef,
+    Remarks: remarks,
+    QueueTimeOutURL: queueUrl,
+    ResultURL: resultUrl,
+  });
+};
