@@ -81,7 +81,7 @@ const {
   transactionStatus
 } = mpesaApi
 ````
-Ofcourse you dont need to import all methods, you can import the only ones you need.
+Of course you don't need to import all methods,but you can import the only ones you need.
 
 All methods return a `<Promise>`, hence you can use `.then` or `await`.
 All calls are done by Axios, so for the response structure check Axios documentation.
@@ -89,7 +89,7 @@ All calls are done by Axios, so for the response structure check Axios documenta
 ### Methods
 • [B2C Request](https://developer.safaricom.co.ke/b2c/apis/post/paymentrequest)
 
-This initiates a business to customer transactions from a company (shortcode) to end users (mobile numbers) of their services.
+This initiates a business-to-customer transactions from a company (shortcode) to end users (mobile numbers) of their services.
 ````js
 /*
  * b2c(senderParty, receiverParty, amount, queueUrl, resultUrl, commandId = 'BusinessPayment', initiatorName = null, remarks = 'B2C Payment', occasion = null)
@@ -202,7 +202,7 @@ await mpesaApi.accountBalance(shortCode, 4, URL + '/accountbalance/timeout', URL
 ## Testing
 Testing needs you to clone this repo.
 
-The command below runs both integration and unit test.
+The command below runs both integration and unit tests.
 
 Integration tests launch a ngrok instance and await callbacks (you will need an active internet connection for this).
 
@@ -228,7 +228,7 @@ new Mpesa({
 
 - [x] E2E Integration Tests
 - [x] Deploy to Npm
-- [x] Reduce number of args
+- [x] Reduce the number of args
 - [x] Detailed Documentation
 - [ ] Enumify
 - [ ] Validators for MSISDN and other expected inputs
